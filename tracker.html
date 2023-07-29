@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> LIVE LOCATION</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+</head>
+  <style>
+     #self{
+            position: absolute;
+        top: 5px;
+        right: -200px; 
+        font-size: 21px;
+        margin: 0;
+        padding: 5px 10px;
+        cursor: pointer;
+        color: white;
+        }
+        h1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            line-height: 50%;
+            color: #3b6607;
+            
+            font-size: 30px;
+        }
+    #bar{
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+    }
+    #about{
+        font-size: 21px;
+        margin: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+color: white;
+
+        
+    }
+    #back{
+        font-size: 21px;
+        margin: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+color: white;
+    }
+   
+        
+    
+    #aliens{
+        font-size: 21px;
+        margin: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+        color: white;
+    }
+    #invasion{
+        font-size: 21px;
+        margin: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+        color: white;
+
+    }
+    #nasa{
+        font-size: 21px;
+        margin: 0px;
+        padding: 5px 10px;
+        cursor: pointer;
+        color: white;
+    }
+    /*#stripes {
+            position: relative;
+           /* top: 0px;
+            left: 0px; 
+            z-index: 2;
+            
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+    
+}
+
+.icon {
+    
+    position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        background-image: url('menu_white.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        }
+
+
+#options {
+    position: fixed;
+    top: 100;
+    left: -200px; 
+    width: 200px;
+    height: 100%;
+    background-color: #f0f0f0;
+    transition: left 0.3s ease; 
+    z-index: 10; 
+}
+
+#options ul {
+    list-style: none;
+    padding: 20px;
+}
+
+#options li {
+    cursor: pointer;
+    margin-bottom: 15px;
+}*/
+
+  </style>
+</head>
+<body background="stars_bg.jpeg">
+  <center> <h1> Tracker</h1></center>
+  <!--<div id="bar3">
+  <div id="stripes">
+      <div class="icon"> <h2 id="self"> <-- SELF DEFENSE</h2>
+          
+  </div>
+  </div>
+  <div id="options"> 
+      <ul>
+          <li id="defense" onclick="defy()">How to Combat the aliens</li>
+          <li id="weapon">Weapons</li>
+          <li id="resource">resources</li>
+          
+      </ul>
+  </div>-->
+    <hr> 
+    <div id="bar"> 
+        <h2 id="back" onclick="home()">Home</h2>
+    <h2 id="about" onclick="abt()"> About us</h2>
+    
+    <h2 id="aliens" onclick="alien()">about the aliens</h2>
+    <h2 id="invasion" onclick="invasions()">The Invasion</h2>
+    <h2 id="nasa" onclick="nasaa()"> Talk to NASA</h2>
+    </div>
+    <hr> 
+    <div id="map" style="height: 600px;"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+  <script>
+    var about= document.getElementById('about')
+    var tracker= document.getElementById('tracker')
+    var aliens= document.getElementById('aliens')
+    var invasion= document.getElementById('invasion')
+    var nasa= document.getElementById('nasa')
+
+    function abt(){
+        window.location.href='about1.html';
+    };
+
+    function home(){
+        window.location.href='HackathonVansh1.html';
+
+    };
+    function alien(){
+        window.location.href='aliens1.html';
+    };
+    function invasions(){
+        window.location.href='invasion1.html';
+    };
+    function nasaa(){
+        window.location.href='nasa1.html';
+    };
+    document.getElementById('stripes').addEventListener('click', function() {
+    const Panel = document.getElementById('options');
+    if (Panel.style.left === '-200px') {
+        Panel.style.left = '0';
+
+    } else {
+        Panel.style.left = '-200px';
+    }
+});
+
+
+
+
+</script>
+  <script>
+    
+    const map = L.map('map').setView([51.508525204056575, -0.12224804193650297], 3); 
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    
+    const markersData = [
+      {
+        lat: 38.88325688615001, 
+        lng: -77.01631081245266,
+        title: 'MAIN NASA HQ',
+        
+      }
+      
+    ];
+
+    
+    markersData.forEach(marker => {
+      const { lat, lng, title, description } = marker;
+      L.marker([lat, lng])
+        .addTo(map)
+        .bindPopup(`<b>${title}</b><br>${description}`);
+    });
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+    const highlightMarker = L.marker([51.508525204056575, -0.12224804193650297], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,0,0,0.5); width: 100px; height: 100px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [15, 15],
+      iconAnchor: [7, 7],
+    }),
+  }).addTo(map);
+  highlightMarker.bindPopup('<b>This area has been destroyed by the aliens</b>').openPopup();
+  const highlightMarker1 = L.marker([4.876134644399457, -52.825478907289984], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,0,0,0.5); width: 300px; height: 300px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker1.bindPopup('<b>This area has been destroyed by the aliens</b>').openPopup();
+  highlightMarker.bindPopup('<b>This area has been destroyed by the aliens</b>').openPopup();
+  const highlightMarker2 = L.marker([30.048764858806237, 31.238890571467163], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,0,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker2.bindPopup('<b>This area has been destroyed by the aliens</b>').openPopup();
+  const highlightMarker3 = L.marker([33.879174946385106, 64.83466633151475], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,255,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker3.bindPopup('<b>This area has been taken over by the aliens</b>').openPopup();
+  const highlightMarker4 = L.marker([34.291119965516614, 9.433111487018762], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,255,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker4.bindPopup('<b>This area has been taken over by the aliens</b>').openPopup();
+  const highlightMarker5 = L.marker([68.606724,130.070313], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,255,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker5.bindPopup('<b>This area has been taken over by the aliens</b>').openPopup();
+
+  highlightMarker4.bindPopup('<b>This area has been taken over by the aliens</b>').openPopup();
+  const highlightMarker6 = L.marker([57.98661093374764, -102.97291757611258], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,255,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker6.bindPopup('<b>This area has been taken over by the aliens</b>').openPopup();
+  const highlightMarker7 = L.marker([42.08781564708893, 13.545896496099912], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,165,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker7.bindPopup('<b>This area is predicted to be taken over by aliens</b>').openPopup();
+  const highlightMarker8 = L.marker([66.458696, 61.164062], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,165,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker8.bindPopup('<b>This area is predicted to be taken over by aliens</b>').openPopup();
+  const highlightMarker9 = L.marker([35.939822855301905, -96.1604730508332], {
+    icon: L.divIcon({
+      className: 'custom-marker',
+      html: '<div style="background-color: rgba(255,165,0,0.5); width: 200px; height: 200px; border-radius: 50%; opacity: 10;"></div>',
+      iconSize: [-5, -5],
+      iconAnchor: [2, 2],
+      
+    }),
+  }).addTo(map);
+  highlightMarker9.bindPopup('<b>This area is predicted to be taken over by aliens</b>').openPopup();
+  
+</script>
+ 
+  </script>
+</body>
+</html>

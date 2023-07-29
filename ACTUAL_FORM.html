@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="HACKATHON_3.js"> </script>
+    <title>Form</title>
+    <style>
+        input[type=submit] {
+          width: 40%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px;
+          margin: 8px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        input[type=reset] {
+          width: 40%;
+          background-color: #c63737;
+          color: white;
+          padding: 14px;
+          margin: 8px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        input[type=text] {
+         border: 2px solid #ccc;
+         border-radius: 4px; 
+        }
+        select {
+         border: 2px solid #ccc;
+         border-radius: 4px;
+         width: 50%;
+         background-color: #f1f1f1;
+        }
+        textarea {
+         border: 2px solid #ccc;
+         border-radius: 4px;
+        }
+        input[type=number] {
+         border: 2px solid #ccc;
+         border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <table border="1" align="center">
+        <td>
+            <h1 align="center"><u>Talk To NASA</u></h1>
+    <form>
+        <center>
+            <br>
+        <input type="text" placeholder="*First Name" name="First Name">&nbsp;
+        <input type="text" placeholder="*Last Name" name="Last Name">
+        <br><br>
+        <select name="name" size="1" multiple>
+            <option value="value">Singapore (+65)
+                <option value="value">America (+1)
+                    <option value="value">India (+91)
+                        <option value="value">China (+85)
+                            <option value="value">France (+33)
+                                <option value="value">United Kingdom (+44)
+                                    <option value="value">Germany (+49)
+                                        <option value="value">Russia (+7)
+        </select>
+        <input type="number" placeholder="*Phone Number" name="Phone Number">
+        <br><br>
+        <input type="text" placeholder="*E-mail" name="E-mail">
+        <br><br>
+        <input type="text" placeholder="*Subject" name="Subject">
+        <br><br>
+        Suggestions
+        <br>
+        <textarea name="name" rows="7" cols="25" wrap></textarea>
+        <br>
+        <input type="checkbox" name="name" value="data">*By checking this box, you agree to allow The Alien 
+        <br>
+        Times and its entities to use and disclose your contact 
+        <br>
+        details and particulars for the purposes of facilitating
+        <br> 
+        your information.
+        <br>
+        I acknowledge that all personal data provided shall be
+        <br> 
+        disclosed and shared amoungst The Alien Times for 
+        <br>
+        the purposes set out in our Privacy Policy.
+        <br>
+        <br>
+        <input type="checkbox" name="name" value="data"><font>I'm not an alien</font>
+        <br><br>
+        <input type="submit" value="Send" id="sub" onclick="subyy()">
+        <input type="reset" value="Reset">
+    </center>
+    </form>
+</td>
+</table>
+</center>
+<script>
+    var suby = document.getElementById('sub')
+    function subyy(){
+        window.location.href = 'THX.html';
+
+    }
+        
+    
+
+
+
+</script>
+</body>
+</html>
